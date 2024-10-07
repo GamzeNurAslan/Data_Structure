@@ -1,0 +1,60 @@
+package veri_yapisi;
+
+class ogrenci{
+String isim;
+String soyad;
+char cinsiyet;
+int yas;
+
+public ogrenci(String isim,String soyad,char cinsiyet,int yas){
+this.isim = isim;
+this.soyad=soyad;
+        this.cinsiyet = cinsiyet;
+        this.yas = yas;
+}
+}
+public class Veri_yapisi {
+
+    public static void main(String[] args) {
+       ogrenci o = new ogrenci("Gamze","Aslan",'K',19);
+        System.out.println(o.isim+" "+o.soyad+" "+o.cinsiyet+" "+o.yas);
+       ogrenci [] ogr = new ogrenci[30];
+       for(int i=0;i<ogr.length;i++){
+       ogr[i] = new ogrenci("B","A",'E',20);
+           System.out.println(ogr[i].isim+" "+ogr[i].soyad+" "+ogr[i].cinsiyet+" "+ogr[i].yas);
+       }
+    }
+}
+/*Çıktı:
+Gamze Aslan K 19
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+B A E 20
+BUILD SUCCESSFUL (total time: 1 second)*/
