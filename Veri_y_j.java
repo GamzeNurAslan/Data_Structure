@@ -1,6 +1,6 @@
 package veri_y_j;
 class Veri_y_j {
-    /*int boyut;
+    int boyut;
     String[] elemanlar;
     int indis;
 
@@ -67,8 +67,6 @@ class Veri_y_j {
         dizim.arayaEkle(2, "Beyran");
         dizim.arayaEkle(2, "Yuvalama");
         dizim.diziYazdir();
-    }*/
-    
-    
+    }
 }
 
