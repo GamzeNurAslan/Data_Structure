@@ -1,0 +1,85 @@
+package com.mycompany.odev;
+
+//Odev=>Büyük boyutlu rastgele elemanlardan oluşan bir dizi üretmek ve üç yöntemin çalışma zamanını analiz etmek için gerekli Java kodlarını yazın.
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Odev {
+    public static class Randomx {
+        public static int[] rastgele(int boyut) {
+            Random k = new Random();
+            int[] dizi = new int[boyut];                                           // 1
+            for (int i = 0; i < boyut; i++) {                                      // (1,N+1,N)=(2N+2)
+                dizi[i] = k.nextInt(boyut);                                        // N
+            }
+            return dizi;                                                           // 1
+        }                                                                          // Toplam maliyet:3N+4                           //O(N)
+    }
+//*************************************************//
+    static class ArraySorter {
+        public static void diziSirasi(int[] dizi) {
+            Arrays.sort(dizi);                                                     // 1
+        }                                                                          // Toplam maliyet:1                              //O(1)
+    }
+//************************************************//
+    static class SelectionSort {
+        public static void sort(int[] dizi) {
+            int n = dizi.length;
+            for (int i = 0; i < n - 1; i++) {                                       // (1,N,N-1)=(2N)
+                int min = i;                                                        // N-1
+                for (int j = i + 1; j < n; j++) {                                   // N*(N-1,N,N)=3N^2-N
+                    if (dizi[j] < dizi[min]) {                                      // 1
+                        min = j;                                                    // 3N^2-N
+                    }
+                }
+                int temp = dizi[min];
+                dizi[min] = dizi[i];
+                dizi[i] = temp;
+            }
+        }                                                                           // Toplam maliyet:6N^2+N                        //O(N^2)
+    }
+//***********************************************//
+    static class ShellSort {
+        public static void sort(int[] dizi) {
+            int n = dizi.length;
+            for (int gap = n / 2; gap > 0; gap /= 2) {                              // (N/2,1,N)=3N/2+1
+                for (int i = gap; i < n; i++) {                                     // (1,N-1,N)=2N
+                    int temp = dizi[i];                                             // N
+                    int j;
+                    for (j = i; j >= gap && dizi[j - gap] > temp; j -= gap) {       // N*(N,?,?)=>Düzelteceğim burayı!
+                        dizi[j] = dizi[j - gap];                                    // N*N*N
+                    }
+                    dizi[j] = temp;                                                 // N*N
+                }
+            }                                                                       // Toplam maliyet:?                             //O(N^3)
+        }
+}
+//***********************************************//
+    public static void main(String[] args) {
+        int boyut = 100000; // Büyük boyutlu dizi
+        int[] dizi = Odev.Randomx.rastgele(boyut);
+
+        //Java'nın sıralama algoritması
+        int[] dizi1 = Arrays.copyOf(dizi, dizi.length);
+        long baslangic_zamani = System.nanoTime();
+        Odev.ArraySorter.diziSirasi(dizi1);
+        long bitis_zamani = System.nanoTime();
+        System.out.println("Java Arrays.sort() süresi: " + (bitis_zamani - baslangic_zamani) + " ns");
+
+        //Seçim sıralama
+        int[] dizi2 = Arrays.copyOf(dizi, dizi.length);
+        baslangic_zamani = System.nanoTime();
+        Odev.SelectionSort.sort(dizi2);
+        bitis_zamani = System.nanoTime();
+        System.out.println("Seçim sıralama süresi: " + (bitis_zamani - baslangic_zamani) + " ns");
+
+        //Kabuk sıralama
+        int[] dizi3 = Arrays.copyOf(dizi, dizi.length);
+        baslangic_zamani = System.nanoTime();
+        Odev.ShellSort.sort(dizi3);
+        bitis_zamani = System.nanoTime();
+        System.out.println("Kabuk sıralama süresi: " + (bitis_zamani - baslangic_zamani) + " ns");
+    }
+}
+
