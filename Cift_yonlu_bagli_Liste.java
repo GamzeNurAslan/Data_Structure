@@ -55,7 +55,7 @@ class IkiyonluListe {
             temp = temp.sonraki;
         }
         if (temp == null) {
-            return false; // Anahtar bulunamadı
+            return false; 
         }
 
         Link yenidugum = new Link(yeni);
@@ -77,11 +77,11 @@ class IkiyonluListe {
         Link temp = ilk;
         while (temp != null) {
             if (temp.veri == anahtar) {
-                return true; // Anahtar bulundu
+                return true; 
             }
             temp = temp.sonraki;
         }
-        return false; // Anahtar bulunamadı
+        return false; 
     }
 
     public Link bastanSil() {
@@ -116,7 +116,7 @@ class IkiyonluListe {
             temp = temp.sonraki;
         }
         if (temp == null) {
-            return null; // Anahtar bulunamadı
+            return null; 
         }
         if (temp == ilk) {
             ilk = temp.sonraki;
@@ -138,7 +138,7 @@ class IkiyonluListe {
         }
         
         Link temp = ilk;
-        Link max = ilk; // İlk elemanı en yüksek olarak varsayıyoruz
+        Link max = ilk; 
         while (temp != null) {
             if (temp.veri > max.veri) {
                 max = temp;
@@ -161,13 +161,31 @@ class IkiyonluListe {
 
 public class Cift_yonlu_bagli_Liste {
     public static void main(String[] args) {
-        IkiyonluListe liste = new IkiyonluListe(); // Düzeltildi
+        IkiyonluListe liste = new IkiyonluListe(); 
         liste.basaEkle(7);
         liste.basaEkle(5);
         liste.sonaEkle(9);
         liste.sonaEkle(4);
         liste.arkasinaEkle(7, 6);
         liste.yazdir();
-        liste.enYuksek(); // En yüksek değeri bul ve yazdır
+        liste.enYuksek();
+
+        if(liste.bosmu()){
+              System.out.println("liste boş");
+        }else{
+             System.out.println("liste boş değil");
+        }
+        liste.bastanSil();
+        liste.yazdir();
+        liste.sondanSil();
+        liste.yazdir();
+        liste.seciliSil(4);
+        liste.yazdir();
+
+        if(liste.ara(4)){
+            System.out.println("bulundu");
+        }else{
+            System.out.println("bulunamadı");
+        }
     }
 }
