@@ -1,0 +1,81 @@
+public class DaireselbagliL {
+        DaireselbagliL next;
+        int deger;
+    }
+
+public class tekyonlu_bagliL {
+    DaireselbagliL son;
+    
+    void ekle(int eleman){
+      DaireselbagliL temp = new DaireselbagliL();
+      temp.deger = eleman;
+      if(son==null){
+          temp.next = temp;
+          son=temp;
+      }else{
+          temp.next = son.next;
+          son.next = temp;
+          son = temp;
+      }
+    }
+    void listele(){
+    DaireselbagliL temp = son.next.next;
+        System.out.println(son.next.deger);
+    while(temp != son.next){
+         System.out.println(temp.deger);
+         temp = temp.next;
+         
+    }
+    }
+    DaireselbagliL ara(int eleman){
+       DaireselbagliL temp = son.next.next;
+       if(son.next.deger == eleman){
+           return son.next;
+       }
+       else{
+       while(temp!=son.next){
+          if(temp.deger == eleman){
+             return temp;
+          }
+       }
+       }
+       return null;
+    }
+    void sil(int eleman){
+    DaireselbagliL temp = son.next.next;
+    DaireselbagliL bironceki = son.next;
+    if(son.next.deger == eleman){
+         son.next = son.next.next;
+    }else{
+    while(temp != son.next){
+         if(temp.deger==eleman){
+             bironceki.next = temp.next;
+             if(temp == son){
+             son = bironceki;
+             }
+         }
+         bironceki = temp;
+         temp = temp.next;
+    }
+    }
+    }
+}
+
+public class text {
+    public static void main(String [] args){
+        tekyonlu_bagliL t = new tekyonlu_bagliL();
+        t.ekle(42);
+        t.ekle(27);
+        t.ekle(19);
+        t.ekle(100);
+        t.ekle(142);
+        t.ekle(227);
+        t.ekle(319);
+        t.ekle(700);
+        
+        t.sil(100);
+        t.sil(700);
+        t.sil(42);
+        t.listele();
+    }
+}
