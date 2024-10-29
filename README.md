@@ -10,3 +10,5 @@ Bu sayede liste üzerinde her zaman dolaşım mümkündür. Başlangıç noktas�
 Çift yönlü dairesel bağlı liste, her düğümün hem bir sonraki hem de bir önceki düğümü referans aldığı bir yapıdır. Bu yapı, hem ileri hem de geri yönde dolaşmayı sağlar.Dairesel bağlı listelerin diğer bağlı listelerden farkı
 son düğümün sonrası ‘null’ değil de ilk düğümü göstermesidir.Ayrıca, son düğümün işaretçisi baş düğümüne ve baş düğümünün işaretçisi de son düğüme işaret eder,böylece tam bir dairesellik sağlanır.
 Bu özellik, elemanların eklenmesi ve silinmesi işlemlerinde esneklik sunar.
+
+![image](https://github.com/user-attachments/assets/32ad2f6e-e50c-4217-a5fa-dbb2c5af2e1f)
