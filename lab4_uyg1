@@ -1,10 +1,10 @@
 package com.mycompany.lab4_uyg1;
-public class elemna {
+public class Eleman {
     int sayi;
-    elemna ileri;
-    elemna geri;
+    Eleman ileri;
+    Eleman geri;
     
-    public elemna(int sayi){
+    public Eleman(int sayi){
         this.sayi=sayi;
         this.ileri=null;
         this.geri=null;
