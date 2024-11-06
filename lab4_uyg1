@@ -11,13 +11,13 @@ public class Eleman {
     }
 }
 public class CiftBagliListe {
-  elemna bas;
-  elemna son;
+  Eleman bas;
+  Eleman son;
     public CiftBagliListe(){
         bas=null;
         son=null;
     }
-    public void basaEkle(elemna yeni){
+    public void basaEkle(Eleman yeni){
          if(bas==null){
              bas = yeni;
              son = yeni;
@@ -28,7 +28,7 @@ public class CiftBagliListe {
            bas=yeni;
          }
     }
-    public void sonaEkle(elemna yeni){
+    public void sonaEkle(Eleman yeni){
     if(bas==null){
              bas = yeni;
              son = yeni;
@@ -56,7 +56,7 @@ public class CiftBagliListe {
         }
     }
     public void arayaElemanEkle(int nereye,elemna eklenecekSayi){
-      elemna yedek = bas;
+      Eleman yedek = bas;
       while(yedek.sayi != nereye){
          yedek = yedek.ileri;
          if(yedek == null){
@@ -74,7 +74,7 @@ public class CiftBagliListe {
       yedek.ileri = eklenecekSayi;     //  <--
     }
     public void girileniSil(int aranan){
-        elemna yedek = bas;
+        Eleman yedek = bas;
       while(yedek.sayi != aranan){
          yedek = yedek.ileri;
          if(yedek == null){
@@ -89,7 +89,7 @@ public class CiftBagliListe {
       }
     }
     String listele(){
-       elemna yedek = bas;
+       Eleman yedek = bas;
        String liste = "";
        while(yedek != null){
            liste = liste + yedek.sayi + "-->";
