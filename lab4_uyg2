@@ -1,0 +1,96 @@
+package com.mycompany.lab4_uyg2;
+public class Lab4_uyg2 {
+    public static void main(String[] args) {
+        Araba opel = new Araba("Opel",2000);
+        Araba bmw = new Araba("BMW",1995);
+        Araba audi = new Araba("Audi",2005);
+        Araba cadillac = new Araba("OCadillac",2003);
+        Araba nissan = new Araba("Nissan",2010);
+        LinkedList l = new LinkedList();
+        l.inset(opel);
+        l.display();
+        l.inset(bmw);
+        l.display();
+        l.inset(audi);
+        l.display();
+        l.inset(cadillac);
+        l.display();
+        l.inset(nissan);
+        l.display();
+    }
+}
+public class Araba {
+   private String marka;
+   private int yil;
+   public Araba(String marka,int yil){
+         this.marka = marka;
+         this.yil = yil;
+   }
+   public String getMarka(){
+     return marka;
+   }
+   public void setMarka(String marka){
+      this.marka = marka;
+   }
+   public int getYil(){
+     return yil;
+   }
+   public void setYil(int yil){
+     this.yil = yil;
+   }
+   public void display(){
+       System.out.println("["+this.yil+" "+this.marka+"]");
+   }
+}
+public class Node {
+    private Araba araba;
+    private Node next;
+    public Node(Araba araba){
+          this.araba = araba;
+          this.next = null;
+    }
+    public Araba getAraba(){
+        return araba;
+    }
+    public void setAraba(Araba araba){
+        this.araba = araba;
+    }
+    public Node getNext(){
+        return next;
+    }
+    public void setNext(Node next){
+        this.next = next;
+    }
+}
+public class LinkedList {
+    private Node ilk;
+    public LinkedList(){
+          this.ilk = null;
+    }
+    public void insert(Araba araba){
+      Node yeniEleman = new Node(araba);
+      if(this.ilk == null){
+           this.ilk = yeniEleman;
+      }else{
+         if(yeniEleman.getAraba().getYil() < this.ilk.getAraba().getYil()){
+              yeniEleman.setNext(this.ilk);   //yeni.ileri = bas
+              this.ilk = yeniEleman;          //bas = yeni
+         }else{
+             Node temp = ilk;
+             while(temp.getNext() != null && yeniEleman.getAraba().getYil() > temp.getNext().getAraba().getYil()){  //yeni vs temp.ileri
+             temp = temp.getNext();
+             }
+             yeniEleman.setNext(temp.getNext());    // yeni.ileri = temp.ileri
+             temp.setNext(yeniEleman);         // temp.ileri = yeni
+         }
+      }
+    }
+    public void display(){
+        Node p = ilk;
+        while(p != null){
+             p.getAraba().display();
+             p=p.getNext();
+        }
+        System.out.println("");
+    }
+}
