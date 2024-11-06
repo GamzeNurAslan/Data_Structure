@@ -1,0 +1,102 @@
+package com.mycompany.lab4_uyg1;
+public class elemna {
+    int sayi;
+    elemna ileri;
+    elemna geri;
+    
+    public elemna(int sayi){
+        this.sayi=sayi;
+        this.ileri=null;
+        this.geri=null;
+    }
+}
+public class CiftBagliListe {
+  elemna bas;
+  elemna son;
+    public CiftBagliListe(){
+        bas=null;
+        son=null;
+    }
+    public void basaEkle(elemna yeni){
+         if(bas==null){
+             bas = yeni;
+             son = yeni;
+         }
+         else{
+           yeni.ileri = bas;    // -->
+           bas.geri=yeni;       // <--
+           bas=yeni;
+         }
+    }
+    public void sonaEkle(elemna yeni){
+    if(bas==null){
+             bas = yeni;
+             son = yeni;
+         }
+    else{
+        yeni.geri = son; //1
+        son.ileri = yeni;  //2
+        son = yeni;    //3
+    }
+    }
+    public void bastanSil(){
+         if(bas.ileri == null){
+             son = null;
+         }else{
+              bas.ileri.geri = null;
+              bas=bas.ileri;
+         }
+    }
+    public void sondanSil(){
+        if(bas.ileri == null){
+              bas = null;
+        }else{
+              son.geri.ileri = null;
+              son=son.geri;
+        }
+    }
+    public void arayaElemanEkle(int nereye,elemna eklenecekSayi){
+      elemna yedek = bas;
+      while(yedek.sayi != nereye){
+         yedek = yedek.ileri;
+         if(yedek == null){
+             System.out.println("hiç eleman yok");
+         }
+      }
+      if(yedek == son){
+           eklenecekSayi.ileri = null;
+            son = eklenecekSayi;
+      }else{
+           eklenecekSayi.ileri = yedek.ileri;   //  -->
+           yedek.ileri.geri = eklenecekSayi;     //  <--
+      }
+      eklenecekSayi.geri = yedek;   //  -->
+      yedek.ileri = eklenecekSayi;     //  <--
+    }
+    public void girileniSil(int aranan){
+        elemna yedek = bas;
+      while(yedek.sayi != aranan){
+         yedek = yedek.ileri;
+         if(yedek == null){
+             System.out.println("hiç eleman yok");
+         }
+      }
+      if(yedek==bas){
+      bas = yedek.ileri;
+      }else{
+      yedek.geri.ileri = yedek.ileri;  //    -->
+      yedek.ileri.geri = yedek.geri;   //    <--
+      }
+    }
+    String listele(){
+       elemna yedek = bas;
+       String liste = "";
+       while(yedek != null){
+           liste = liste + yedek.sayi + "-->";
+           yedek = yedek.ileri;
+       }
+       return liste;
+    }
+}
+//Burada JFrame açabilmemiz için main metodunun silinmesi gerekliydi,bu silinmiş hali.
+//JFrame kodlarını yazamadım,sonra ekleyeceğim *
