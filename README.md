@@ -1,4 +1,5 @@
 Veri Yapısı Nedir?
+
 Veri yapısı, verileri depolamak ve düzenlemek için kullanılan bir depolamadır. Verilerin bir bilgisayarda düzenlenmesinin bir yoludur, böylece verilere verimli bir şekilde erişilebilir ve güncellenebilir.
 Bir veri yapısı yalnızca verileri düzenlemek için kullanılmaz. Aynı zamanda verileri işlemek, almak ve depolamak için de kullanılır. Geliştirilen hemen hemen her programda veya yazılım sisteminde kullanılan farklı temel ve gelişmiş veri yapısı türleri vardır.
 
