@@ -1,0 +1,364 @@
+package com.mycompany.data_structure;
+//Bir dizide eksik elemanı bulma
+import java.util.Arrays;
+public class Data_structure {
+    public static int eksik_eleman(int n, int[] dizi)
+    {
+        int[] hash = new int[n + 1];
+        for (int i = 0; i < n - 1; i++) {
+            hash[dizi[i]]++;
+        }
+        for (int i = 1; i <= n; i++) {
+            if (hash[i] == 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args)
+    {
+        int[] dizi = { 1, 2, 3, 5 };
+        int n = 5;
+        System.out.println(eksik_eleman(n, dizi));
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+   //Bir dizide eksik eleman bulma (2.yontem)
+    public class Data_structure {
+    public static int eksik_bulma(int n, int[] dizi){
+        int sum = 0;
+        for (int i = 0; i < n - 1; i++) {
+            sum += dizi[i];
+        }
+        int expectedSum = (n * (n + 1)) / 2;
+        return expectedSum - sum;
+    }
+    public static void main(String[] args){
+        int[] dizi = { 1, 2, 3, 5 };
+        int n = 5;
+        System.out.println(eksik_bulma(n, dizi));
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Diziyi istenilen sırada geri döndürme işlemi yapma
+import java.util.Arrays;
+class Data_structure {
+    static void diziyi_dondur(int[] dizi, int kac_adim) {
+        int n = dizi.length;
+        for (int i = 0; i < kac_adim; i++) {
+            int first = dizi[0];
+            for (int j = 0; j < n - 1; j++) {
+                dizi[j] = dizi[j + 1];
+            }
+            dizi[n - 1] = first;
+        }
+    }
+    public static void main(String[] args) {
+        int[] dizi = { 1, 2, 3, 4, 5, 6 };
+        int kac_adim = 4;
+
+        diziyi_dondur(dizi, kac_adim);
+
+        for (int i = 0; i < dizi.length; i++)
+            System.out.print(dizi[i] + " ");
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Bir dizide en çok tekrar eden elemanı bulma
+class Data_structure{
+    static int en_cok_tekrar_eden(int dizi[], int dizi_boyutu){
+        int i;
+        for (i = 0; i < dizi_boyutu; i++) {
+            int count = 0;
+            for (int j = 0; j < dizi_boyutu; j++) {
+                if (dizi[i] == dizi[j])
+                    count++;
+            }
+            if (count % 2 != 0)
+                return dizi[i];
+        }
+        return -1;
+    }
+    public static void main(String[] args){
+        int dizi[] = new int[]{ 2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2 };
+        int n = dizi.length;
+        System.out.println(en_cok_tekrar_eden(dizi, n));
+    }
+}
+
+//-----------------------------------------------------------------------------*/
+
+//n sistematikbirdizi yayınlandığında , görev dizisindeki tüm Liderleri bulmaktır. 
+//Bir eleman, sağ taraftaki tüm elemanlardan büyükse Liderdir.
+import java.util.ArrayList;
+class Data_structure{
+    static ArrayList<Integer> lider(int[] dizi) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int n = dizi.length;
+        for (int i = 0; i < n; i++) {
+            int j;
+            for (j = i + 1; j < n; j++) {
+                if (dizi[i] < dizi[j])
+                    break;
+            }
+            if (j == n)
+                result.add(dizi[i]);
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        int[] dizi = { 16, 17, 4, 3, 5, 2 };
+        ArrayList<Integer> result = lider(dizi);
+        for (int res : result) {
+            System.out.print(res + " ");
+        }
+        System.out.println();
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Verilen bir diziyi ters çevirme işlemi
+import java.util.Arrays;
+class Data_structure {
+    static void dizi_dondurme(int[] dizi) {
+        int sol = 0, sag = dizi.length - 1;
+        while (sol < sag) {
+            int temp = dizi[sol];
+            dizi[sol] = dizi[sag];
+            dizi[sag] = temp;
+            sol++;
+            sag--;
+        }
+    }
+    public static void main(String[] args) {
+        int[] dizi = { 1, 4, 3, 2, 6, 5 };
+
+        dizi_dondurme(dizi);
+
+        for (int i = 0; i < dizi.length; i++) 
+            System.out.print(dizi[i] + " ");
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Bir dizide aradığımız elemanının indisini bulma işlemi
+import java.util.Arrays;
+public class Data_structure {
+    public static int ikiliArama(int[] dizi, int low, int high, int x) {
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (dizi[mid] == x) return mid;
+            if (dizi[mid] < x) low = mid + 1;
+            else high = mid - 1;
+        }
+        return -1;
+    }
+    public static int siraBulma(int[] dizi, int low, int high) {
+        while (low < high) {
+            if (dizi[low] <= dizi[high])
+                return low;
+            
+            int mid = (low + high) / 2;
+            if (dizi[mid] > dizi[high])
+                low = mid + 1;
+            else
+                high = mid;
+        }
+        return low;
+    }
+    public static int pivotedBinarySearch(int[] dizi, int n, int aranan) {
+        int sira = siraBulma(dizi, 0, n - 1);
+        if (sira == 0)
+            return ikiliArama(dizi, 0, n - 1, aranan);
+        if (dizi[sira] == aranan)
+            return sira;
+
+        if (dizi[0] <= aranan)
+            return ikiliArama(dizi, 0, sira - 1, aranan);
+        return ikiliArama(dizi, sira + 1, n - 1, aranan);
+    }
+    public static void main(String[] args) {
+        int[] dizi = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+        int aranan = 3;
+        System.out.println(pivotedBinarySearch(dizi, dizi.length, aranan));
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Her biri n düzenli olan arr1[] ve arr2[] adlı 2 sıralı dizi verildiğinde , görev arr1[] ve arr2[] birleştirilerek 
+//elde edilen dizin medyanını bulmaktır.
+import java.util.Arrays;
+class Data_structure {
+    static double medyan_bulma(int[] dizi1, int[] dizi2) {
+        int[] dizi3 = new int[dizi1.length + dizi2.length];
+        System.arraycopy(dizi1, 0, dizi3, 0, dizi1.length);
+        System.arraycopy(dizi2, 0, dizi3, dizi1.length, dizi2.length);
+
+        Arrays.sort(dizi3);
+        
+        int n = dizi3.length;
+        int mid1 = n / 2;
+        int mid2 = mid1 - 1;
+        return (dizi3[mid1] + dizi3[mid2]) / 2.0;
+    }
+
+    public static void main(String[] args) {
+        int[] dizi1 = { 1, 12, 15, 26, 38 };
+        int[] dizi2 = { 2, 13, 17, 30, 45 };
+        System.out.println(medyan_bulma(dizi1, dizi2));
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Binary-search ile arama yapma işlemi
+=>O(n)
+class Data_structure{
+    static int ikiliArama(int dizi[], int low, int high,int arama){
+        if (high < low)
+            return -1;
+        int mid = (low + high) / 2;
+        if (arama == dizi[mid])
+            return mid;
+        if (arama > dizi[mid])
+            return ikiliArama(dizi, (mid + 1), high, arama);
+        return ikiliArama(dizi, low, (mid - 1), arama);
+    }
+    public static void main(String[] args){
+        int dizi[] = { 5, 6, 7, 8, 9, 10 };
+        int n, arama;
+        n = dizi.length - 1;
+        arama = 10;
+        System.out.println("Index: "
+                           + ikiliArama(dizi, 0, n, arama));
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Elemanı sona ekleme
+=>O(1)
+class Data_structure {
+    static int sona_ekleme(int dizi[], int n, int anahtar,int kapasite)
+    {
+        if (n >= kapasite)
+            return n;
+
+        dizi[n] = anahtar;
+
+        return (n + 1);
+    }
+    public static void main(String[] args)
+    {
+        int[] dizi = new int[20];
+        dizi[0] = 12;
+        dizi[1] = 16;
+        dizi[2] = 20;
+        dizi[3] = 40;
+        dizi[4] = 50;
+        dizi[5] = 70;
+        int kapasite = 20;
+        int n = 6;
+        int i, anahtar = 26;
+
+        System.out.print("Öncesi: ");
+        for (i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+
+        n = sona_ekleme(dizi, n, anahtar, kapasite);
+
+        System.out.print("\n Sonrası: ");
+        for (i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Eklemek istediğimiz elemanı eklemek istediğimiz indise ekleme işlemi yapan örnek
+=>O(n)
+import java.io.*;
+class Data_structure{
+    static void eleman_ekle_istenilen(int dizi[], int n, int x,int istenilen_indis){
+        for (int i = n - 1; i >= istenilen_indis; i--)
+            dizi[i + 1] = dizi[i];
+        dizi[istenilen_indis] = x;
+    }
+    public static void main(String[] args){
+        int dizi[] = new int[15];
+        dizi[0] = 2;
+        dizi[1] = 4;
+        dizi[2] = 1;
+        dizi[3] = 8;
+        dizi[4] = 5;
+        int n = 5;
+        int x = 10, istenilen_indis = 2;
+
+        System.out.print("Önceki : ");
+        for (int i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+
+        eleman_ekle_istenilen(dizi, n, x, istenilen_indis);
+        n += 1;
+
+        System.out.print("\n\nSonraki : ");
+        for (int i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+    }
+}
+
+//-----------------------------------------------------------------------------//
+
+//Bir diziden istenilen elemanı silme 
+=>O(n)
+class Data_structure{
+    static int eleman_bul(int dizi[], int n, int key){
+        int i;
+        for (i = 0; i < n; i++)
+            if (dizi[i] == key)
+                return i;
+
+        return -1;
+    }
+    static int eleman_sil(int dizi[], int n, int key){
+        int pos = eleman_bul(dizi, n, key);
+
+        if (pos == -1) {
+            System.out.println("EEleman bulunamadı");
+            return n;
+        }
+        int i;
+        for (i = pos; i < n - 1; i++)
+            dizi[i] = dizi[i + 1];
+
+        return n - 1;
+    }
+    public static void main(String args[])
+    {
+        int i;
+        int dizi[] = { 10, 50, 30, 40, 20 };
+
+        int n = dizi.length;
+        int key = 30;
+
+        System.out.println("Dizinin önceki hali : ");
+        for (i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+        n = eleman_sil(dizi, n, key);
+
+        System.out.println("\n\nDizinin sonraki hali : ");
+        for (i = 0; i < n; i++)
+            System.out.print(dizi[i] + " ");
+    }
+}
