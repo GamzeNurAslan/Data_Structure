@@ -1,3 +1,7 @@
+Veri Yapısı Nedir?
+Veri yapısı, verileri depolamak ve düzenlemek için kullanılan bir depolamadır. Verilerin bir bilgisayarda düzenlenmesinin bir yoludur, böylece verilere verimli bir şekilde erişilebilir ve güncellenebilir.
+Bir veri yapısı yalnızca verileri düzenlemek için kullanılmaz. Aynı zamanda verileri işlemek, almak ve depolamak için de kullanılır. Geliştirilen hemen hemen her programda veya yazılım sisteminde kullanılan farklı temel ve gelişmiş veri yapısı türleri vardır.
+
 1. Tek Yönlü Bağlı Liste
 Tek yönlü bağlı liste, düğümlerin (node) bir sırayla birbirine bağlı olduğu bir veri yapısıdır. Her düğüm, veriyi ve bir sonraki düğümün referansını (işaretçisini) içerir. Başlangıç düğümüne "baş" (head) denir,
 son düğüm ise "null" veya "boş" bir işaretçi içerir. Bu yapı, verilerin dinamik olarak eklenmesi ve çıkarılması için uygundur.
