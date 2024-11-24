@@ -1,0 +1,74 @@
+package com.mycompany.ll_bagliliste;
+public class LL {
+    int data;
+    LL next;
+
+    LL(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    LL head;  
+
+    public void append(int data) {
+        LL newNode = new LL(data);
+        if (head == null) {
+            head = newNode;  
+        } else {
+            LL temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode; 
+        }
+    }
+
+    public void merge(LinkedList list2) {
+        if (this.head == null) {  
+            this.head = list2.head;
+            return;
+        }
+        
+        LL temp = this.head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        
+        temp.next = list2.head;
+    }
+
+    public void printList() {
+        LL temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");  
+    }
+}
+public class Liste {
+    public static void main(String[] args) {
+        LinkedList list1 = new LinkedList();
+        list1.append(1);
+        list1.append(2);
+        list1.append(3);
+
+        LinkedList list2 = new LinkedList();
+        list2.append(4);
+        list2.append(5);
+        list2.append(6);
+
+        System.out.println("Birinci Bağlı Liste:");
+        list1.printList();
+        
+        System.out.println("İkinci Bağlı Liste:");
+        list2.printList();
+
+        list1.merge(list2);
+
+        System.out.println("Birleştirilmiş Bağlı Liste:");
+        list1.printList();
+    }
+}
