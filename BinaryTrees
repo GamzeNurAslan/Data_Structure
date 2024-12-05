@@ -1,0 +1,124 @@
+package com.mycompany.agac;
+public class BinaryTreeNode {
+    int data;
+    BinaryTreeNode left, right;  
+
+    public BinaryTreeNode(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+    public class BinaryTree {
+    BinaryTreeNode root;  
+
+    public BinaryTree() {
+        root = null;
+    }
+
+    public void insert(int data) {
+        root = insertRecursive(root, data);  
+    }
+
+    private BinaryTreeNode insertRecursive(BinaryTreeNode node, int data) {
+        if (node == null) {
+            return new BinaryTreeNode(data); 
+        }
+
+        if (data < node.data) {
+            node.left = insertRecursive(node.left, data); 
+        } else if (data > node.data) {
+            node.right = insertRecursive(node.right, data); 
+        }
+
+        return node;  
+    }
+
+    public void inorder() {
+        inorderRecursive(root);  
+        System.out.println();
+    }
+
+    // Inorder (sol - kök - sağ)
+    private void inorderRecursive(BinaryTreeNode node) {
+        if (node != null) {
+            inorderRecursive(node.left);  
+            System.out.print(node.data + " "); 
+            inorderRecursive(node.right); 
+        }
+    }
+
+    public void preorder() {
+        preorderRecursive(root);  
+        System.out.println();
+    }
+
+    // Preorder traversal (kök - sol - sağ)
+    private void preorderRecursive(BinaryTreeNode node) {
+        if (node != null) {
+            System.out.print(node.data + " ");  
+            preorderRecursive(node.left);  
+            preorderRecursive(node.right);  
+        }
+    }
+
+    public void postorder() {
+        postorderRecursive(root);  
+        System.out.println();
+    }
+
+    // Postorder traversal (sol - sağ - kök)
+    private void postorderRecursive(BinaryTreeNode node) {
+        if (node != null) {
+            postorderRecursive(node.left);  
+            postorderRecursive(node.right); 
+            System.out.print(node.data + " "); 
+        }
+    }
+
+    public boolean search(int data) {
+        return searchRecursive(root, data);  
+    }
+
+    private boolean searchRecursive(BinaryTreeNode node, int data) {
+        if (node == null) {
+            return false;  
+        }
+
+        if (data == node.data) {
+            return true; 
+        }
+
+        if (data < node.data) {
+            return searchRecursive(node.left, data);  
+        } else {
+            return searchRecursive(node.right, data);  
+        }
+    }}
+public class Agac {
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree(); 
+
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+
+        System.out.println("Inorder :");
+        tree.inorder();  // Çıktı: 20 30 40 50 60 70 80
+
+        System.out.println("Preorder :");
+        tree.preorder();  // Çıktı: 50 30 20 40 70 60 80
+
+        System.out.println("Postorder :");
+        tree.postorder();  // Çıktı: 20 40 30 60 80 70 50
+
+        System.out.println("Arama 40: " + tree.search(40));  // Çıktı: true
+        System.out.println("Arama 100: " + tree.search(100));  // Çıktı: false
+    }
+}
+
