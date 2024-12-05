@@ -122,3 +122,4 @@ public class Agac {
     }
 }
 
+//Burada levelorder da vardır ama eklemedim.Levelorder ise seviyelerine göre ekleme yapar :)
