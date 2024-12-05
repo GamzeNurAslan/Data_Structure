@@ -16,4 +16,14 @@ Bu sayede liste üzerinde her zaman dolaşım mümkündür. Başlangıç noktas�
 son düğümün sonrası ‘null’ değil de ilk düğümü göstermesidir.Ayrıca, son düğümün işaretçisi baş düğümüne ve baş düğümünün işaretçisi de son düğüme işaret eder,böylece tam bir dairesellik sağlanır.
 Bu özellik, elemanların eklenmesi ve silinmesi işlemlerinde esneklik sunar.
 
+
+Stack (Yığın)
+Stack, "Last In, First Out" (LIFO) prensibiyle çalışan bir veri yapısıdır. Yani, en son eklenen öğe ilk çıkar. Yığın, genellikle itme (push) ve çekme (pop) işlemleri ile yönetilir.
+
+Kuyruk (Queue)
+Kuyruk, "First In, First Out" (FIFO) prensibiyle çalışan bir veri yapısıdır. Yani, en önce eklenen öğe ilk çıkar. Kuyruk, ekleme (enqueue) ve çıkarma (dequeue) işlemleri ile yönetilir.
+
+Ağaç (Tree)
+Ağaç veri yapısı, hiyerarşik düzenlenmiş düğümlerden oluşur. Her düğüm bir veri öğesi içerir ve diğer düğümlerle bağlı olabilir. Ağaçların kök düğümü (root) ve dalları (branches) vardır. En yaygın kullanılan türlerden biri ikili ağaçlardır (binary trees).
+
 ![image](https://github.com/user-attachments/assets/32ad2f6e-e50c-4217-a5fa-dbb2c5af2e1f)
