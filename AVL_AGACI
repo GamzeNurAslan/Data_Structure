@@ -1,0 +1,95 @@
+package com.mycompany.lab8_uyg1;
+public class Lab8_uyg1 {
+public class Avlagaci {
+    Dugum kok;
+    int height(Dugum N){
+       if(N==null)
+           return 0;
+       return N.yukseklik;
+    }
+    int max(int a,int b){
+       return (a>b) ? a:b;
+    }
+    Dugum sagaDondur(Dugum y){
+        Dugum x = y.sol;
+        Dugum T2 = x.sag;
+        x.sag = y;
+        y.sol = T2;
+        y.yukseklik = max(height(y.sol),height(y.sag))+1;
+        x.yukseklik = max(height(x.sol),height(x.sag))+1;
+        
+        return x;
+    }
+    Dugum solaDondur (Dugum x){
+        Dugum y = x.sag;
+        Dugum T2 = y.sol;
+        y.sol = x ;
+        x.sag = T2;
+        x.yukseklik = max(height(x.sol),height(x.sag))+1;
+        y.yukseklik = max(height(x.sol),height(x.sag))+1;
+        return y ;
+    }
+    int getBalance(Dugum N){
+        if(N==null)
+            return 0 ;
+            return height(N.sol)-height(N.sag);
+        
+    }
+    Dugum insert(Dugum node,int key){
+        if(node==null)
+            return ( new Dugum(key));
+        if(key<node.anahtar)
+            node.sol=insert(node.sol,key);
+        else if(key>node.anahtar)
+            node.sag=insert(node.sag,key);
+        else 
+            return node ;
+        node.yukseklik=1+max(height(node.sol),height(node.sag));
+        int balance = getBalance(node);
+        if(balance>1&& key<node.sol.anahtar)
+            //düğüm sola eğilimli ve yeni anahtar alt ağaca eklenmiştir 
+            return sagaDondur(node);
+        if(balance<-1&& key>node.sag.anahtar)
+            //düğüm sağa eğilimli ve yeni anahtar sağ alt ağaca eklenmiş
+            return solaDondur(node);
+        if(balance>1&& key<node.sol.anahtar){
+            node.sol = solaDondur(node.sol);
+        return sagaDondur(node);
+        }
+        if(balance < -1 && key < node.sag.anahtar){
+     node.sag = sagaDondur(node.sag);
+     return solaDondur(node);
+}
+        return node;
+    }
+    void preorder(Dugum node){
+        if(node != null){
+            System.out.println(node.anahtar+" ");
+            preorder(node.sol);
+            preorder(node.sag);
+        }
+    }
+}
+public class Dugum {
+    int anahtar,yukseklik;
+    Dugum sol,sag;
+    
+    Dugum(int d){
+        anahtar = d;
+        yukseklik = 1;
+    }
+}
+public static void main(String[] args) {
+        Avlagaci tree = new Avlagaci();
+        tree.kok = tree.insert(tree.kok, 10);
+        tree.kok = tree.insert(tree.kok, 20);
+        tree.kok = tree.insert(tree.kok, 30);
+        tree.kok = tree.insert(tree.kok, 40);
+        tree.kok = tree.insert(tree.kok, 50);
+        tree.kok = tree.insert(tree.kok, 25);
+        
+        System.out.println("Oluşan ağacın preorder dolaşımı:");
+        tree.preorder(tree.kok);
+    }
+}
+
