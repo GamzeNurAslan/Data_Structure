@@ -15,46 +15,38 @@ public class Trees {
 
     private Node root;
 
-    // Eleman ekleme işlemi (insert)
     public void insert(int value) {
         root = insertRec(root, value);
     }
 
     private Node insertRec(Node root, int value) {
-        // Eğer ağaç boşsa, yeni bir düğüm ekler
         if (root == null) {
             root = new Node(value);
             return root;
         }
 
-        // Değer küçükse sola, büyükse sağa gider
         if (value < root.value) {
             root.left = insertRec(root.left, value);
         } else if (value > root.value) {
             root.right = insertRec(root.right, value);
         }
 
-        // Aynı değeri eklememek için kontrol
         return root;
     }
 
-    // Eleman arama işlemi (search)
     public boolean search(int value) {
         return searchRec(root, value);
     }
 
     private boolean searchRec(Node root, int value) {
-        // Ağacın köküne ulaşılmış veya değer bulunmuşsa
         if (root == null) {
             return false;
         }
 
-        // Değer bulunduysa
         if (root.value == value) {
             return true;
         }
 
-        // Değer küçüklük veya büyüklük durumuna göre devam edilir
         if (value < root.value) {
             return searchRec(root.left, value);
         } else {
@@ -62,7 +54,6 @@ public class Trees {
         }
     }
 
-    // Maksimum değer bulma (max)
     public int findMax() {
         Node current = root;
         while (current.right != null) {
@@ -71,7 +62,6 @@ public class Trees {
         return current.value;
     }
 
-    // Minimum değer bulma (min)
     public int findMin() {
         Node current = root;
         while (current.left != null) {
@@ -80,7 +70,6 @@ public class Trees {
         return current.value;
     }
 
-    // Eleman silme işlemi (delete)
     public void delete(int value) {
         root = deleteRec(root, value);
     }
@@ -124,7 +113,6 @@ public class Trees {
         return minValue;
     }
 
-    // Ağacı yazdırma işlemi (inorder traversal)
     public void inorder() {
         inorderRec(root);
         System.out.println();
@@ -142,7 +130,6 @@ public class Trees {
         Trees bst = new Trees();
         Scanner scanner = new Scanner(System.in);
         
-        // Kullanıcıdan işlemi seçmesini ister
         while (true) {
             System.out.println("1. Eleman ekle");
             System.out.println("2. Eleman ara");
@@ -155,12 +142,12 @@ public class Trees {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1: // Eleman ekle
+                case 1: 
                     System.out.print("Eklenecek değeri girin: ");
                     int value = scanner.nextInt();
                     bst.insert(value);
                     break;
-                case 2: // Eleman ara
+                case 2: 
                     System.out.print("Aranacak değeri girin: ");
                     value = scanner.nextInt();
                     if (bst.search(value)) {
@@ -169,22 +156,22 @@ public class Trees {
                         System.out.println("Değer bulunamadı.");
                     }
                     break;
-                case 3: // Maksimum değer bul
+                case 3: 
                     System.out.println("Maksimum değer: " + bst.findMax());
                     break;
-                case 4: // Minimum değer bul
+                case 4: 
                     System.out.println("Minimum değer: " + bst.findMin());
                     break;
-                case 5: // Eleman sil
+                case 5: 
                     System.out.print("Silinecek değeri girin: ");
                     value = scanner.nextInt();
                     bst.delete(value);
                     break;
-                case 6: // Ağacı yazdır
+                case 6: 
                     System.out.println("Ağaç sıralı şekilde: ");
                     bst.inorder();
                     break;
-                case 7: // Çıkış
+                case 7: 
                     System.out.println("Çıkılıyor...");
                     scanner.close();
                     return;
