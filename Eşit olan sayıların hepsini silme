@@ -1,0 +1,71 @@
+package com.mycompany.hepsini_sil;
+public class Hepsini_sil {
+    
+    private static class Node {
+        int value;
+        Node next;
+        
+        public Node(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+    
+    private Node top;
+    
+    public Hepsini_sil() {
+        this.top = null;
+    }
+    
+    public void push(int value) {
+        Node yeni = new Node(value);
+        yeni.next = top;
+        top = yeni;
+    }
+    
+    public void hepsini_sil(int value) {
+        if (top == null) {
+            return;
+        }
+        
+        while (top != null && top.value == value) {
+            top = top.next; 
+        }
+        
+        Node current = top;
+        while (current != null && current.next != null) {
+            if (current.next.value == value) {
+                current.next = current.next.next; 
+            } else {
+                current = current.next; 
+            }
+        }
+    }
+    public void printStack() {
+        Node current = top;
+        while (current != null) {
+            System.out.print(current.value + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        Hepsini_sil st = new Hepsini_sil();
+        
+        st.push(5);
+        st.push(3);
+        st.push(7);
+        st.push(3);
+        st.push(10);
+        st.push(3);
+        
+        System.out.println("Original Stack:");
+        st.printStack(); 
+        
+        st.hepsini_sil(3);
+        
+        System.out.println("Updated Stack (after removing all 3's):");
+        st.printStack(); 
+    }
+}
