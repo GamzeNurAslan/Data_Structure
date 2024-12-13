@@ -1,36 +1,27 @@
 package com.mycompany.oylesine;
-        import java.util.Stack;
+import java.util.Stack;
 
 public class Oylesine {
-    
-    // Fonksiyon: Stack kullanarak kelimeyi ters çevir
-    public static String reverseString(String str) {
-        // Stack oluştur
-        Stack<Character> stack = new Stack<>();
+    public static String degistir(String str) {
+        Stack<Character> st = new Stack<>();
         
-        // String'in her bir karakterini Stack'e ekle
         for (int i = 0; i < str.length(); i++) {
             stack.push(str.charAt(i));
         }
         
-        // Ters çevrilmiş kelimeyi oluştur
-        StringBuilder reversedStr = new StringBuilder();
-        while (!stack.isEmpty()) {
-            reversedStr.append(stack.pop());  // Stack'ten karakter çıkar ve ekle
+        StringBuilder revers = new StringBuilder();
+        while (!st.isEmpty()) {
+            revers.append(stack.pop());  
         }
-        
-        return reversedStr.toString();
+        return revers.toString();
     }
     
     public static void main(String[] args) {
-        // Ters çevrilecek kelime
-        String word = "hello";
+        String kelime = "gamze";
         
-        // Kelimeyi ters çevir
-        String reversedWord = reverseString(word);
+        String revers = reverseString(kelime);
         
-        // Sonucu yazdır
-        System.out.println("Original: " + word);
-        System.out.println("Reversed: " + reversedWord);
+        System.out.println("Orijinal: " + kelime);
+        System.out.println("Değiştirilmiş: " + revers);
     }
 }
