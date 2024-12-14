@@ -1,0 +1,54 @@
+package com.mycompany.project_stack3;
+import java.util.Stack;
+public class Project_stack3 {
+
+    public static void removeMax(Stack<Integer> stack) {
+        if (stack.isEmpty()) {
+            System.out.println("Yığıt boş!");
+            return;
+        }
+
+        Stack<Integer> temp = new Stack<>();
+        
+        int max = Integer.MIN_VALUE;
+        
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+            if (current > max) {
+                max = current;
+            }
+            temp.push(current);  
+        }
+        
+        Stack<Integer> son = new Stack<>();
+        
+        while (!temp.isEmpty()) {
+            int current = temp.pop();
+            if (current != max) {
+                son.push(current);  
+            }
+        }
+        
+        System.out.println("Yeni Yığıt:");
+        while (!son.isEmpty()) {
+            System.out.print(son.pop() + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(10);
+        stack.push(15);
+        stack.push(20);
+        stack.push(33);
+        stack.push(40);
+        stack.push(7);
+
+        System.out.println("Orijinal Yığıt:");
+        System.out.println(stack);
+        
+        removeMax(stack);
+    }
+}
