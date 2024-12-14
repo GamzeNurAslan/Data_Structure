@@ -1,0 +1,50 @@
+package com.mycompany.project_stack3;
+import java.util.Stack;
+public class Project_stack3 {
+    public static void atalim(Stack<Integer> gir, Stack<Integer> cift, Stack<Integer> tek) {
+        while (!gir.isEmpty()) {
+            int value = gir.pop();  
+            
+            if (value % 2 == 0) {
+                cift.push(value);
+            } else {  
+                tek.push(value);
+            }
+        }
+    }
+    public static void yazalim(Stack<Integer> stack) {
+        Stack<Integer> temp = new Stack<>();  
+        while (!stack.isEmpty()) {
+            int value = stack.pop();
+            System.out.print(value + " ");
+            temp.push(value);  
+        }
+        System.out.println();
+        while (!temp.isEmpty()) {
+            stack.push(temp.pop());
+        }
+    }
+    public static void main(String[] args) {
+        Stack<Integer> gir = new Stack<>();
+        Stack<Integer> cift = new Stack<>();
+        Stack<Integer> tek = new Stack<>();
+        
+        gir.push(10);
+        gir.push(15);
+        gir.push(20);
+        gir.push(33);
+        gir.push(40);
+        gir.push(7);
+
+        System.out.println("Orijinal Stack:");
+        yazalim(gir);  
+        
+        atalim(gir, cift, tek);
+
+        System.out.println("Çift Stack:");
+        yazalim(cift);  
+        
+        System.out.println("Tek Stack:");
+        yazalim(tek);  
+    }
+}
