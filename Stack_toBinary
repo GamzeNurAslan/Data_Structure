@@ -1,0 +1,31 @@
+package com.mycompany.project_stack3;
+import java.util.Stack;
+    
+public class Project_stack3 {
+    public static String toBinary(int sayi) {
+        Stack<Integer> stack = new Stack<>();
+        
+        if (sayi == 0) {
+            return "0";
+        }
+        
+        while (sayi > 0) {
+            stack.push(sayi % 2); 
+            sayi = sayi / 2;     
+        }
+        
+        StringBuilder ikilik = new StringBuilder();
+        while (!stack.isEmpty()) {
+            ikilik.append(stack.pop());  
+        }
+        return ikilik.toString();
+    }
+
+    public static void main(String[] args) {
+        int sayi = 11;  
+        String binary = toBinary(sayi);
+        
+        System.out.println("Sayı: " + sayi);
+        System.out.println("İkili karşılık: " + binary);
+    }
+}
